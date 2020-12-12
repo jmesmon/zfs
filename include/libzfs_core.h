@@ -30,9 +30,8 @@
 #define	_LIBZFS_CORE_H
 
 #include <libnvpair.h>
-#include <sys/param.h>
+#include <sys/zfs_core.h>
 #include <sys/types.h>
-#include <sys/fs/zfs.h>
 
 #ifdef	__cplusplus
 extern "C" {

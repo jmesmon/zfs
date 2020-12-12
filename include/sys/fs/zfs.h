@@ -36,6 +36,7 @@
 
 #include <sys/time.h>
 #include <sys/zio_priority.h>
+#include <sys/zfs_core.h>
 
 #ifdef	__cplusplus
 extern "C" {
@@ -80,7 +81,6 @@ typedef enum dmu_objset_type {
 #define	ZAP_MAXNAMELEN 256
 #define	ZAP_MAXVALUELEN (1024 * 8)
 #define	ZAP_OLDMAXVALUELEN 1024
-#define	ZFS_MAX_DATASET_NAME_LEN 256
 
 /*
  * Dataset properties are identified by these constants and must be added to
@@ -1147,26 +1147,6 @@ typedef struct vdev_stat_ex {
 } vdev_stat_ex_t;
 
 /*
- * Initialize functions.
- */
-typedef enum pool_initialize_func {
-	POOL_INITIALIZE_START,
-	POOL_INITIALIZE_CANCEL,
-	POOL_INITIALIZE_SUSPEND,
-	POOL_INITIALIZE_FUNCS
-} pool_initialize_func_t;
-
-/*
- * TRIM functions.
- */
-typedef enum pool_trim_func {
-	POOL_TRIM_START,
-	POOL_TRIM_CANCEL,
-	POOL_TRIM_SUSPEND,
-	POOL_TRIM_FUNCS
-} pool_trim_func_t;
-
-/*
  * DDT statistics.  Note: all fields should be 64-bit because this
  * is passed between kernel and userland as an nvlist uint64 array.
  */
@@ -1408,23 +1388,6 @@ typedef enum {
 	SPA_LOAD_ERROR,		/* load failed		*/
 	SPA_LOAD_CREATE		/* creation in progress */
 } spa_load_state_t;
-
-typedef enum {
-	ZPOOL_WAIT_CKPT_DISCARD,
-	ZPOOL_WAIT_FREE,
-	ZPOOL_WAIT_INITIALIZE,
-	ZPOOL_WAIT_REPLACE,
-	ZPOOL_WAIT_REMOVE,
-	ZPOOL_WAIT_RESILVER,
-	ZPOOL_WAIT_SCRUB,
-	ZPOOL_WAIT_TRIM,
-	ZPOOL_WAIT_NUM_ACTIVITIES
-} zpool_wait_activity_t;
-
-typedef enum {
-	ZFS_WAIT_DELETEQ,
-	ZFS_WAIT_NUM_ACTIVITIES
-} zfs_wait_activity_t;
 
 /*
  * Bookmark name values.
